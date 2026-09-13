@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 380px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; margin: 0; background-color: #f9f9f9; }
+    h3 { margin: 0 0 10px 0; font-size: 16px; color: #2c3e50; text-align: center; }
+    .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 10px; }
+    .input-group { margin-bottom: 10px; }
+    label { display: block; font-size: 11px; color: #7f8c8d; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; }
+    input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #dcdde1; border-radius: 4px; font-size: 13px; }
+    input:focus { border-color: #3498db; outline: none; }
+    button { width: 100%; padding: 10px; background-color: #3498db; color: white; border: none; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    button:hover { background-color: #2980b9; }
+    button.secondary { background-color: #2ecc71; margin-top: 5px; }
+    button.secondary:hover { background-color: #27ae60; }
+    .hidden { display: none; }
+    .account-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f1f2f6; font-size: 12px; }
+    .account-item:last-child { border: none; }
+    .delete-btn { background: #e74c3c; color: white; padding: 2px 8px; font-size: 10px; border-radius: 3px; width: auto; }
+    .delete-btn:hover { background: #c0392b; }
+    .status { color: #2ecc71; font-size: 12px; text-align: center; margin-top: 8px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <!-- Экран 1: Ввод Мастер-Пароля -->
+  <div id="authScreen" class="card">
+    <h3>Вход в CryptoVault</h3>
+    <div class="input-group">
+      <label for="masterPassword">Мастер-пароль для шифрования:</label>
+      <input type="password" id="masterPassword" placeholder="Введите ваш секретный пароль">
+    </div>
+    <button id="unlockBtn">Разблокировать</button>
+  </div>
+
+  <!-- Экран 2: Управление аккаунтами -->
+  <div id="mainScreen" class="hidden">
+    <div class="card">
+      <h3>Добавить сайт</h3>
+      <div class="input-group">
+        <label>Домен или IP-адрес:</label>
+        <input type="text" id="siteInput" placeholder="172.19.238.121 или github.com">
+      </div>
+      <div class="input-group">
+        <label>Логин:</label>
+        <input type="text" id="loginInput" placeholder="admin">
+      </div>
+      <div class="input-group">
+        <label>Пароль:</label>
+        <input type="password" id="passwordInput" placeholder="••••••••">
+      </div>
+      <button id="addBtn">Зашифровать и сохранить</button>
+      <div id="status" class="status hidden">Успешно сохранено!</div>
+    </div>
+
+    <div class="card">
+      <h3>Сохраненные сайты (Зашифровано 🔒)</h3>
+      <div id="accountsList"></div>
+      <button id="lockBtn" class="secondary" style="background-color: #7f8c8d;">Заблокировать хранилище</button>
+    </div>
+  </div>
+
+  <!-- Подключаем модуль шифрования и скрипт UI -->
+  <script src="crypto.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
